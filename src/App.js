@@ -10,35 +10,37 @@ class App extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        toDo: [{
-          task: "Organize Garage",
+        toDo: [
+        {
+          task: 'Organize Garage',
           id: 1528817077286,
           completed: false
         },
-      {
+        {
         task: 'Bake Cookies',
         id: 1528817084358,
         completed: false
-      }
+        }
     ],
     toDoStyle: 'toDo',
     strikethrough: {textDecoration: 'line-through'}
       };
     }
       handleInputChange = e => {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value});
       };
 
       handleNewToDo = e => {
         e.preventDefault();
         this.setState({
-          todo: [...this.state.toDo,
+          toDo: [
+            ...this.state.toDo,
           {
             task: this.state[e.target.name],
             id: Date.now(),
             completed: false
           }
-        ],
+        ]
         
         });
       };
@@ -58,7 +60,7 @@ class App extends React.Component {
       removeCompleted = e => {
         e.preventDefault();
         this.setState({
-          toDo: this.state.toDo.filter(!toDo.completed ? toDo: null)
+          toDo: this.state.toDo.filter(toDo => (!toDo.completed ? toDo: null))
         });
       };
     
