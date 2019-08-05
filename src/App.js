@@ -1,5 +1,7 @@
 import React from 'react';
-
+import List from './components/TodoComponents/TodoList';
+import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css';
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -19,8 +21,10 @@ class App extends React.Component {
         completed: false
       }
     ],
-    
+    toDoStyle: 'toDo',
+    strikethrough: {textDecoration: 'line-through'}
       };
+    }
       handleInputChange = e => {
         this.setState({[e.target.name]: e.target.value});
       };
@@ -34,7 +38,8 @@ class App extends React.Component {
             id: Date.now(),
             completed: false
           }
-        ]
+        ],
+        
         });
       };
       handleCompleted = id => {
@@ -53,17 +58,25 @@ class App extends React.Component {
       removeCompleted = e => {
         e.preventDefault();
         this.setState({
-          
-        })
-      }
-    }
+          toDo: this.state.toDo.filter(!toDo.completed ? toDo: null)
+        });
+      };
+    
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className='container'>
+        <List
+          toDo={this.state.toDo}
+          handleCompleted={this.handleCompleted}
+          strikethrough={this.state.strikethrough}
+          />
+          <TodoForm
+          handleNewToDo={this.handleNewToDo}
+          handleInputChange={this.handleInputChange}
+          removeCompleted={this.removeCompleted}
+          />
       </div>
     );
   }
 }
-
-export default App;
+export default App

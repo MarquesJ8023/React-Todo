@@ -4,18 +4,21 @@ import React from 'react';
 import Todo from './Todo';
 
 const List = props => (
-    <div className='list'>
+    <section className='list'>
         <h1>Todo List</h1>
-        <ol>
+        <ul>
             {props.toDo.map(item => (
                 <Todo
+                    key={item.id}
                     id={item.id}
                     task={item.task}
                     handleCompleted={props.handleCompleted}
-                    >
-                    </Todo>
+                    style={props.style}
+                    strikethrough ={item.completed ? props.strikethrough : null}
+                 />
+                    
             ))}
-        </ol>
-    </div>
+        </ul>
+    </section>
 );
 export default List;
